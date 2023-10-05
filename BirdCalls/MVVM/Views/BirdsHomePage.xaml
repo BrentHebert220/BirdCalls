@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:BirdCalls.MVVM.ViewModels"
+             xmlns:model="clr-namespace:BirdCalls.MVVM.Models"
+             x:DataType="viewmodel:BirdsViewModel"
+             x:Class="BirdCalls.MVVM.Views.BirdsHomePage"
+
+             Title="BirdsHomePage">
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*, Auto"
+          RowSpacing="0"
+          BackgroundColor="DarkBlue">
+
+        <CollectionView BackgroundColor="DarkBlue"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding BirdSongs}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:BirdSong">
+                    <Grid Padding="10">
+
+                        <Frame 
+                            HeightRequest="100"
+                               Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path=GoToDetailsCommand}"/>
+                            </Frame.GestureRecognizers>
+
+                            <Grid Padding="10"
+                                  ColumnDefinitions="100,*">
+                                <Image 
+                                Aspect="AspectFit"
+                                Source="{Binding Image}"
+                                HeightRequest="100"
+                                WidthRequest="100"/>
+
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    VerticalOptions="Center">
+
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold"/>
+                                  
+                                </VerticalStackLayout>
+                            </Grid>
+
+                        </Frame>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Button 
+                Text="Get Birds"
+                BackgroundColor="DarkBlue"
+            BorderWidth="1"
+                FontSize="Medium"
+                TextColor="White"
+                BorderColor="White"
+                Command="{Binding GetBirdSongsCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Margin="8"/>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+    </Grid>
+
+</ContentPage>

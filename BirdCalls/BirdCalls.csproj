@@ -1,0 +1,122 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>BirdCalls</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>BirdCalls</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.birdcalls</ApplicationId>
+		<ApplicationIdGuid>5447002b-374f-4e05-894e-95421c357156</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\american_gold_finch.jpg" />
+	  <None Remove="Resources\Images\american_robin.jpg" />
+	  <None Remove="Resources\Images\annas_hummingbird.jpg" />
+	  <None Remove="Resources\Images\baltimore_oriole.jpg" />
+	  <None Remove="Resources\Images\Black-Capped Chickadee.jpg" />
+	  <None Remove="Resources\Images\black_headed_grosbeak.jpg" />
+	  <None Remove="Resources\Images\Blue Jay.jpg" />
+	  <None Remove="Resources\Images\Bullock's Oriole.jpg" />
+	  <None Remove="Resources\Images\Carolina Wren.jpg" />
+	  <None Remove="Resources\Images\Cedar Waxwing.jpg" />
+	  <None Remove="Resources\Images\Dark-Eyed Junco.jpg" />
+	  <None Remove="Resources\Images\Downy Woodpecker.jpg" />
+	  <None Remove="Resources\Images\Eastern Bluebird (2).jpg" />
+	  <None Remove="Resources\Images\Eastern Bluebird.jpg" />
+	  <None Remove="Resources\Images\Eastern Phoebe.jpg" />
+	  <None Remove="Resources\Images\Eastern Towhee.jpg" />
+	  <None Remove="Resources\Images\Evening Grosbeak.jpg" />
+	  <None Remove="Resources\Images\Gray Catbird.jpg" />
+	  <None Remove="Resources\Images\Hairy Woodpecker.jpg" />
+	  <None Remove="Resources\Images\House Finch.jpg" />
+	  <None Remove="Resources\Images\house_wren.jpg" />
+	  <None Remove="Resources\Images\Indigo Bunting.jpg" />
+	  <None Remove="Resources\Images\Killdeer.jpg" />
+	  <None Remove="Resources\Images\Mallard.jpg" />
+	  <None Remove="Resources\Images\Mountain Bluebrd.jpg" />
+	  <None Remove="Resources\Images\Mourning Dove.jpg" />
+	  <None Remove="Resources\Images\Northern Cardinal.jpg" />
+	  <None Remove="Resources\Images\Northern Flicker.jpg" />
+	  <None Remove="Resources\Images\Northern Mockingbird.jpg" />
+	  <None Remove="Resources\Images\Pileated Woodpecker.jpg" />
+	  <None Remove="Resources\Images\Pine Siskin.jpg" />
+	  <None Remove="Resources\Images\Purple Finch.jpg" />
+	  <None Remove="Resources\Images\Purple Martin.jpg" />
+	  <None Remove="Resources\Images\Red-Bellied Woodpecker.jpg" />
+	  <None Remove="Resources\Images\Red-Headed Woodpecker.jpg" />
+	  <None Remove="Resources\Images\Rose-Breasted Grosbeak.jpg" />
+	  <None Remove="Resources\Images\Ruby-Throated Hummingbird.jpg" />
+	  <None Remove="Resources\Images\Rufous Hummingbird.jpg" />
+	  <None Remove="Resources\Images\Scarlet Tanager.jpg" />
+	  <None Remove="Resources\Images\Screech-Owl.jpg" />
+	  <None Remove="Resources\Images\Song Sparrow.jpg" />
+	  <None Remove="Resources\Images\Spotted Towhee.jpg" />
+	  <None Remove="Resources\Images\Tree Swallow.jpg" />
+	  <None Remove="Resources\Images\Tufted Titmouse.jpg" />
+	  <None Remove="Resources\Images\Western Scrub-Jay.jpg" />
+	  <None Remove="Resources\Images\Western Tanager.jpg" />
+	  <None Remove="Resources\Images\White-Breasted Nuthatch.jpg" />
+	  <None Remove="Resources\Images\White-Throated Sparrow.jpg" />
+	  <None Remove="Resources\Images\Wood Duck.jpg" />
+	  <None Remove="Resources\Images\wood_thrush.jpg" />
+	  <None Remove="Resources\Images\yellow_warbler.jpg" />
+	  <None Remove="Resources\Raw\birds.json" />
+	  <None Remove="Resources\Raw\for_your Servant David (Psalm 132b).mp4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MVVM\Views\BirdsDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\BirdsHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>
